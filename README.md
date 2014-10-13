@@ -10,4 +10,6 @@ Install
 
 This runs the provisioning script and clones the repo to the raspberry pi:
 
-wget -O - http://foo.com/somescript | sh
+sudo apt-get install wget
+
+wget -O - https://raw.githubusercontent.com/pijokela/raspberry-radiator/master/provision.sh | sudo bash
