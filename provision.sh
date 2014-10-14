@@ -10,7 +10,8 @@ function cleanClone {
   mkdir -p $GIT_DIR
   
   pushd $GIT_DIR
-  rm -r $2
+  echo Cloning into $GIT_DIR/$2
+  rm -rf $2
   git clone https://github.com/$1/$2.git
   popd
 }
