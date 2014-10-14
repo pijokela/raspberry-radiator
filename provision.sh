@@ -1,8 +1,23 @@
 #! /bin/bash
+
+function cleanClone {
+  GIT_DIR = $ROOT$HOME/git
+  mkdir -p $GIT_DIR
+  
+  pushd $GIT_DIR
+  rm -r $1
+  git clone git@github.com:$1.git  
+
+  popd
+}
+
 function addIfMissing {
-  if [ "`grep $2 $1`" = "" ]; then
-    echo Adding $2 to $1
-    echo $2 >> $1
+  if [ "`grep \"$2\" $1`" = "" ]; then
+  	FILE = $ROOT$1
+  	DIR = `dirname $FILE`
+    echo Adding $2 to $FILE
+    mkdir -p $DIR
+    echo "$2" >> $FILE
   else 
   	echo Not adding $2 to $1
   fi
@@ -20,4 +35,4 @@ ensurePackage git
 ensurePackage wget
 ensurePackage chromium
 
-git clone 
+cleanClone pijokela/raspberry-radiator
