@@ -1,20 +1,24 @@
 #! /bin/bash
 
+# Set ROOT to empty if missing:
+if [ -z "${ROOT+xxx}" ]; then
+  ROOT=
+fi
+
 function cleanClone {
-  GIT_DIR = $ROOT$HOME/git
+  GIT_DIR=$ROOT$HOME/git
   mkdir -p $GIT_DIR
   
   pushd $GIT_DIR
   rm -r $1
-  git clone git@github.com:$1.git  
-
+  git clone https://github.com/$1.git
   popd
 }
 
 function addIfMissing {
   if [ "`grep \"$2\" $1`" = "" ]; then
-  	FILE = $ROOT$1
-  	DIR = `dirname $FILE`
+  	FILE=$ROOT$1
+  	DIR=`dirname $FILE`
     echo Adding $2 to $FILE
     mkdir -p $DIR
     echo "$2" >> $FILE
