@@ -10,8 +10,8 @@ function cleanClone {
   mkdir -p $GIT_DIR
   
   pushd $GIT_DIR
-  rm -r $1
-  git clone https://github.com/$1.git
+  rm -r $2
+  git clone https://github.com/$1/$2.git
   popd
 }
 
@@ -39,4 +39,4 @@ ensurePackage git
 ensurePackage wget
 ensurePackage chromium
 
-cleanClone pijokela/raspberry-radiator
+cleanClone pijokela raspberry-radiator
