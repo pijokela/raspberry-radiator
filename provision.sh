@@ -39,5 +39,6 @@ addIfMissing /etc/X11/xinit/xinitrc "xset s noblank     # don't blank the video 
 ensurePackage git
 ensurePackage wget
 ensurePackage chromium
+ensurePackage x11-xserver-utils
 
 cleanClone pijokela raspberry-radiator
