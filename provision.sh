@@ -16,6 +16,11 @@ function cleanClone {
   popd
 }
 
+function replaceLineContaining {
+  FILE=$ROOT$1
+  sed -i 's/.*$2.*/$3/' $FILE
+}
+
 function addIfMissing {
   if [ "`grep \"$2\" $1`" = "" ]; then
   	FILE=$ROOT$1
@@ -35,6 +40,8 @@ function ensurePackage {
 addIfMissing /etc/X11/xinit/xinitrc "xset s off         # don't activate screensaver"
 addIfMissing /etc/X11/xinit/xinitrc "xset -dpms         # disable DPMS (Energy Star) features."
 addIfMissing /etc/X11/xinit/xinitrc "xset s noblank     # don't blank the video device"
+
+replaceLineContaining /etc/lightdm/lightdm.conf "xserver-command=X" "xserver-command=X -s 0 dpms"
 
 ensurePackage git
 ensurePackage wget
