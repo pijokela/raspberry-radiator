@@ -41,7 +41,8 @@ addIfMissing /etc/X11/xinit/xinitrc "xset s off         # don't activate screens
 addIfMissing /etc/X11/xinit/xinitrc "xset -dpms         # disable DPMS (Energy Star) features."
 addIfMissing /etc/X11/xinit/xinitrc "xset s noblank     # don't blank the video device"
 
-replaceLineContaining /etc/lightdm/lightdm.conf "xserver-command=X" "xserver-command=X -s 0 -dpms"
+replaceLineContaining /etc/lightdm/lightdm.conf "xserver-command=X" "xserver-command=X -s 0 dpms"
+replaceLineContaining /etc/X11/xinit/xserverrc "exec /usr/bin/X" "exec /usr/bin/X -s 0 dpms -nolisten tcp \"$@\""
 
 ensurePackage git
 ensurePackage wget
