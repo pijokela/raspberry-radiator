@@ -46,5 +46,6 @@ replaceLineContaining /etc/lightdm/lightdm.conf "xserver-command=X" "xserver-com
 ensurePackage git
 ensurePackage wget
 ensurePackage chromium
+ensurePackage x11-xserver-utils
 
 cleanClone pijokela raspberry-radiator
