@@ -1,0 +1,38 @@
+---
+- hosts: rpi
+  remote_user: pi
+  tasks:
+  - name: Update apt cache and install build-essential
+    apt: name=build-essential update_cache=yes
+    sudo: yes
+  
+  - name: Install python-dev
+    apt: name=python-dev
+    sudo: yes
+
+  - name: Install python-smbus
+    apt: name=python-smbus
+    sudo: yes
+
+  - name: Install python-pip
+    apt: name=python-pip
+    sudo: yes
+
+  - name: Install git
+    apt: name=git
+    sudo: yes
+
+  - name: Install RPi.GPIO
+    pip: name=RPi.GPIO
+
+  # dtparam=i2c_arm=on
+  # - name: Switch i2c on
+  #   lineinfile: name=/config.txt 
+  #   sudo: yes
+
+  - name: Create git directory
+    mkdir: name=/home/pi/git
+
+  - name: Git clone the example software
+  	git: repo=https://github.com/adafruit/Adafruit_Python_CharLCD dest=/home/pi/git
+

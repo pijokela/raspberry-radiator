@@ -1,0 +1,16 @@
+---
+# This playbook copies the public keys to the pi so that
+# the other playbooks can be run without passwords
+# Usage: 
+#   ansible-playbook -i hosts setup_ssh.yml -k -K
+- hosts: rpi
+  remote_user: pi
+  tasks:
+  - name: Create .ssh dir
+    file: name=/home/pi/.ssh state=directory
+
+  - name: Copy authorized keys file to remote hosts
+    copy: src=authorized_keys dest=/home/pi/.ssh/authorized_keys
+
+  - name: Make sure authorized_keys has correct rights
+    file: name=/home/pi/.ssh/authorized_keys mode=0600
