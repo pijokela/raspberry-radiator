@@ -44,9 +44,12 @@ addIfMissing /etc/X11/xinit/xinitrc "xset s noblank     # don't blank the video 
 replaceLineContaining /etc/lightdm/lightdm.conf "xserver-command=X" "xserver-command=X -s 0 dpms"
 replaceLineContaining /etc/X11/xinit/xserverrc "exec \\/usr\\/bin\\/X" "exec \\/usr\\/bin\\/X -s 0 dpms -nolisten tcp \"$@\""
 
+sudo apt-get update
+
 ensurePackage git
 ensurePackage wget
 ensurePackage chromium
 ensurePackage x11-xserver-utils
+ensurePackage java
 
 cleanClone pijokela raspberry-radiator
