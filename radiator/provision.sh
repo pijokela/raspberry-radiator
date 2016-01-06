@@ -51,5 +51,8 @@ ensurePackage wget
 ensurePackage chromium
 ensurePackage x11-xserver-utils
 ensurePackage java
+# Required for I2C:
+ensurePackage python-smbus
+ensurePackage i2c-tools
 
 cleanClone pijokela raspberry-radiator
